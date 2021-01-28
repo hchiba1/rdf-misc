@@ -1,0 +1,8 @@
+#!/usr/bin/env spang2
+# @endpoint orphanet
+
+PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
+SELECT ?s ?o
+WHERE {
+    ?s oboInOwl:hasDbXref ?o
+}
