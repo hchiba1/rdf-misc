@@ -69,12 +69,12 @@ node -v
 ```
 
 ### Install spang
-Download spang from GitHub.
+Download from GitHub.
 ```
 git clone https://github.com/hchiba1/spang.git
 ```
 
-Install spang.
+Install.
 ```
 cd spang
 npm install
