@@ -45,7 +45,7 @@ $ ./orphanet-ensembl.sh > orphanet-ensembl.ttl
 node -v
 ```
 ### Using node on Mac
-If you not have `brew`, install `brew`.
+If you not have `brew`, install it.
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew -v
