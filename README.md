@@ -9,10 +9,24 @@ Querying for the next page (OFFSET 10000 LIMIT 10000)...
 Querying for the next page (OFFSET 20000 LIMIT 10000)...
 Querying for the next page (OFFSET 30000 LIMIT 10000)...
 Querying for the next page (OFFSET 40000 LIMIT 10000)...
+$ wc orphanet.tsv
+  42571   85142 3791019 orphanet.tsv
 ```
-Extract subset of tsv to make ttl
+
+The above command is same as follows.
 ```
-./orphanet-ensembl.sh > orphanet-ensembl.ttl
+$ spang2 -e orphanet orphanet.rq
+```
+
+You can also use the comand-line shortcuts.
+```
+$ spang2 -e orphanet -P oboInOwl:hasDbXref
+```
+
+### Example usecae of the resulting tsv
+Extract subset of tsv to make ttl.
+```
+$ ./orphanet-ensembl.sh > orphanet-ensembl.ttl
 ```
 
 ## Installation
