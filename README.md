@@ -19,8 +19,7 @@ file includes shebang line and endpoint metadata (see `orphanet.rq`).
 $ orphanet.rq > orphanet.tsv
 ```
 
-Even without writing the query file, you can execute spang
-with comand-line shortcuts, which is equivalent to the query file.
+Even without the query file, you can execute spang comand-line shortcuts equivalent to the query file.
 ```
 $ spang2 -e orphanet -P oboInOwl:hasDbXref > orphanet.tsv
 ```
