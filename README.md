@@ -5,6 +5,7 @@
 SPARQL query:
 ```
 PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
+
 SELECT ?s ?o
 WHERE {
     ?s oboInOwl:hasDbXref ?o
