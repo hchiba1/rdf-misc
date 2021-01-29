@@ -4,7 +4,11 @@
 ## Examples
 Obtain data from SPARQL endpoint.
 ```
-./orphanet.rq > orphanet.tsv
+> ./orphanet.rq > orphanet.tsv
+Querying for the next page (OFFSET 10000 LIMIT 10000)...
+Querying for the next page (OFFSET 20000 LIMIT 10000)...
+Querying for the next page (OFFSET 30000 LIMIT 10000)...
+Querying for the next page (OFFSET 40000 LIMIT 10000)...
 ```
 Extract subset of tsv to make ttl
 ```
@@ -33,6 +37,20 @@ Now you can use `node`. Check the version.
 node -v
 ```
 
+### Install spang
+Download spang from GitHub.
+```
+git clone https://github.com/hchiba1/spang.git
+```
+
+Install spang.
+```
+cd spang
+npm install
+npm link
+spang2
+```
+
 ### node on Ubuntu
 If you do not have `npm`, you need `npm`.
 ```
@@ -50,16 +68,4 @@ Install `n` to manage `node` version.
 npm install -g n
 n stable
 node -v
-```
-
-### Install spang2
-Download `spang2` from GitHub.
-```
-git clone https://github.com/hchiba1/spang.git
-```
-```
-cd spang
-npm install
-npm link
-spang2
 ```
