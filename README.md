@@ -50,7 +50,7 @@ If you not have `brew`, install it.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew -v
 ```
-Using `brew`, install `nodebrew`.
+Install `nodebrew` using `brew`.
 ```
 brew install nodebrew
 mkdir -p ~/.nodebrew/src
