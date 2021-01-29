@@ -26,7 +26,7 @@ $ wc orphanet.tsv
 ```
 
 You can also execute the query file as follows, if the
-file includes shebang line and endpoint metadata (see `orphanet.rq`).
+file includes shebang line and endpoint metadata.
 ```
 $ orphanet.rq > orphanet.tsv
 ```
