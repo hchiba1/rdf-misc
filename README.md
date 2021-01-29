@@ -14,7 +14,7 @@ $ wc orphanet.tsv
 ```
 
 You can also execute the SPARQL query file as follows, because the
-query file includes shebang line and endpoint metadata (see the example `orphanet.rq`), .
+query file includes shebang line and endpoint metadata (see `orphanet.rq`).
 ```
 $ orphanet.rq > orphanet.tsv
 ```
