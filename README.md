@@ -38,6 +38,8 @@ $ spang2 -e orphanet -P oboInOwl:hasDbXref > orphanet.tsv
 Extract subset of tsv to make ttl.
 ```
 $ ./orphanet-ensembl.sh > orphanet-ensembl.ttl
+$ grep -c ensembl orphanet-ensembl.ttl
+3213
 ```
 
 ## Installation
