@@ -1,5 +1,5 @@
 #!/usr/bin/env spang2
-# @endpoint orphanet
+# @endpoint https://www.orpha.net/sparql
 
 PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
 
