@@ -13,8 +13,8 @@ $ wc orphanet.tsv
   42571   85142 3791019 orphanet.tsv
 ```
 
-If the SPARQL query file includes shebang line and metadata as comment
-lines at the beginning of file (see the example `orphanet.rq`), you can execute the file as follows.
+You can also execute the SPARQL query file as follows, because the query file includes shebang line and metadata as comment
+lines at the beginning of file (see the example `orphanet.rq`), .
 ```
 $ orphanet.rq > orphanet.tsv
 ```
