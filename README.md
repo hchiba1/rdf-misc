@@ -2,7 +2,7 @@
 `spang2` can obtain results from Virtuoso by automatic pagenation (including lines > 10000).
 
 ## Examples
-SPARQL query:
+Example SPARQL query:
 ```
 PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
 
