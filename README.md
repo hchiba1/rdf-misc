@@ -53,6 +53,8 @@ node -v
 If you not have `brew`, install it.
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+```
 brew -v
 ```
 Install `nodebrew` using `brew`.
