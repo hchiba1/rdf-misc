@@ -5,6 +5,7 @@
 Example SPARQL query:
 ```
 # @endpoint https://www.orpha.net/sparql
+
 PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
 
 SELECT ?s ?o
