@@ -4,7 +4,7 @@
 ## Examples
 Obtain data from SPARQL endpoint.
 ```
-$ ./orphanet.rq > orphanet.tsv
+$ spang2 -e orphanet orphanet.rq > orphanet.tsv
 Querying for the next page (OFFSET 10000 LIMIT 10000)...
 Querying for the next page (OFFSET 20000 LIMIT 10000)...
 Querying for the next page (OFFSET 30000 LIMIT 10000)...
@@ -13,14 +13,16 @@ $ wc orphanet.tsv
   42571   85142 3791019 orphanet.tsv
 ```
 
-The above command is same as follows.
+If the SPARQL query file includes shebang line and metadata as comment
+lines at the beginning of file (see the example `orphanet.rq`), you can execute the file as follows.
 ```
-$ spang2 -e orphanet orphanet.rq
+$ orphanet.rq > orphanet.tsv
 ```
 
-You can also use the comand-line shortcuts.
+Or without writing the query file, you can also use the spang
+comand-line shortcuts, which is equivalent to the query file.
 ```
-$ spang2 -e orphanet -P oboInOwl:hasDbXref
+$ spang2 -e orphanet -P oboInOwl:hasDbXref > orphanet.tsv
 ```
 
 ### Example usecae of the resulting tsv
