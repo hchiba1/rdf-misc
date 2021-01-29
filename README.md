@@ -2,6 +2,15 @@
 `spang2` can obtain results from Virtuoso by automatic pagenation (including lines > 10000).
 
 ## Examples
+SPARQL query:
+```
+PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
+SELECT ?s ?o
+WHERE {
+    ?s oboInOwl:hasDbXref ?o
+}
+```
+
 Obtain data from SPARQL endpoint.
 ```
 $ spang2 -e orphanet orphanet.rq > orphanet.tsv
