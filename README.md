@@ -16,7 +16,7 @@ WHERE {
 
 Obtain data from SPARQL endpoint.
 ```
-$ spang2 -e orphanet orphanet.rq > orphanet.tsv
+$ spang2 orphanet.rq > orphanet.tsv
 Querying for the next page (OFFSET 10000 LIMIT 10000)...
 Querying for the next page (OFFSET 20000 LIMIT 10000)...
 Querying for the next page (OFFSET 30000 LIMIT 10000)...
@@ -26,7 +26,7 @@ $ wc orphanet.tsv
 ```
 
 You can also execute the query file as follows, if the
-file includes shebang line and endpoint metadata.
+file includes shebang line.
 ```
 $ orphanet.rq > orphanet.tsv
 ```
@@ -37,7 +37,7 @@ $ spang2 -e orphanet -P oboInOwl:hasDbXref > orphanet.tsv
 ```
 
 ### Example usecae of the resulting tsv
-Extract subset of tsv to make ttl.
+Extract subset of tsv to make Turtle.
 ```
 $ ./orphanet-ensembl.sh > orphanet-ensembl.ttl
 $ grep -c ensembl orphanet-ensembl.ttl
@@ -52,12 +52,12 @@ You can also use FILTER at the SPARQL level to extract the subset.
 node -v
 ```
 ### Using node on Mac
-If you not have `brew`, install it.
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
+If you do not have `brew`, install it.
 ```
 brew -v
+```
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 Install `nodebrew` using `brew`.
 ```
@@ -87,14 +87,14 @@ spang2
 ### node on Ubuntu
 If you do not have `npm`, you need `npm`.
 ```
-audo apt install -y npm
+sudo apt install -y npm
 ```
-The defualt directory for modules is `/usr/local/`, which requires `sodo`.
+The defualt directory for modules is `/usr/local/`, which requires `sudo`.
 Configure the directory.
 ```
 npm set prefix ~/.npm-global
 ```
-The configuration is saved in `~/npmrc`, so you can also configure by editing it.
+The configuration is saved in `~/.npmrc`, so you can also configure by editing it.
 
 Install `n` to manage `node` version.
 ```
