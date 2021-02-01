@@ -44,7 +44,8 @@ $ grep -c ensembl orphanet-ensembl.ttl
 3213
 ```
 
-You can also use FILTER at the SPARQL level to extract the subset.
+You can also use FILTER at the SPARQL level to extract the subset (see
+`orphanet_filter.rq`).
 
 ## Installation
 `spang2` requires `node` (version >= 12).
