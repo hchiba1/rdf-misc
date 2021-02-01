@@ -1,5 +1,5 @@
 # RDF misc
-`spang2` can obtain results from Virtuoso by automatic pagenation.
+`spang2` can obtain results from **Virtuoso** by automatic pagenation.
 
 ## Examples
 Example SPARQL query:
