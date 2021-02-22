@@ -8,7 +8,8 @@ Error: 400
 Virtuoso 37000 Error SP030: SPARQL compiler, line 0: Too many arguments of a standard built-in function in operator()
 ```
 `libsrc/Wi/sparql_core.c`で`if (argcount > sbd->sbd_maxargs)`という要素数のチェックをスルーするように変更すると、1万要素とかでも普通に渡せるようになる.
-数万以上になるとどんどん遅くなる。5万は結果が返ってくるが、10万は返ってこない。5万から10万のどこかで、以下のエラーに遭遇するようになる。
+
+ただし、数万以上になるとどんどん遅くなる。5万は結果が返ってくるが、10万は返ってこない。5万から10万のどこかで、以下のエラーに遭遇するようになる。
 
 ```
 Error: 400 Bad Request
