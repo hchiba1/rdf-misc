@@ -1,3 +1,29 @@
+# Virtuoso misc
+
+VALUESの要素数が4095以上になるとエラーになる.
+```
+Error: 400
+Virtuoso 37000 Error SP030: SPARQL compiler, line 0: Too many arguments of a standard built-in function in operator()
+```
+`libsrc/Wi/sparql_core.c`で`if (argcount > sbd->sbd_maxargs)`という要素数のチェックをスルーするように変更すると、1万要素とかでも普通に渡せるようになる.
+数万以上になるとどんどん遅くなる。5万は結果が返ってくるが、10万は返ってこない。5万から10万のどこかで、以下のエラーに遭遇するようになる。
+
+```
+Error: 400 Bad Request
+Virtuoso 37000 Error SP031: SPARQL: Internal error: The length of generated SQL text has exceeded 10000 lines of code
+```
+`libsrc/Wi/sparql2sql.h`の`if (SSG_MAX_ALLOWED_LINE_COUNT == ssg->ssg_line_count++)`というチェックをスルーするように変更すると、さらに以下のエラーにひっかかる.
+```
+Error: 500 Internal Server Error
+Virtuoso ..... Error SQ200: Query too large, variables in state over the limit
+```
+`libsrc/Wi/wi.h`内で、`#define MAX_STATE_SLOTS 0xfffe`でなく`#define MAX_STATE_SLOTS 0xffffe`になるようにすれば、state lotsの限界が16倍になるが、それでもまだ以下のエラーが出る.
+```
+Error: 500 Internal Server Error
+Virtuoso 42000 Error SQ199: Maximum size (32767) of a code vector exceeded by 3967441 bytes. Please split the code in smaller units.
+```
+`libsrc/Wi/sqlexp.c`の`if (BOFS_TO_OFS (byte_len) > SHRT_MAX)`というチェックをスルーするように変更すると、10万要素でも答えが返ってくるようになる. ただし遅い.
+
 # RDF misc
 `spang2` can obtain results from *Virtuoso* by **automatic pagenation**.
 
