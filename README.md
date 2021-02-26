@@ -1,6 +1,6 @@
-# Virtuoso misc
+# RDF misc
 
-## VALUESの要素数
+## VirtuosoのVALUESの要素数
 
 VALUESの要素数が4095以上で、下記のエラー
 ```
@@ -64,7 +64,10 @@ Virtuoso 42000 Error SQ199: Maximum size (32767) of a code vector exceeded by 39
 ```
 以上4カ所の修正で、結果的には、数万から10万要素でも答えが返ってくるようになる. ただし数万以上ともなると急激に遅くなり、何分もかかる.
 
-# RDF misc
+# Virtuosoのデフォルト1万行問題
+
+クエリの結果がResultSetMaxRows(デフォルト10000)で切れている場合は、レスポンスヘッダーにX-SPARQL-MaxRows: 10000と設定されるので、それを見てOFFSETをずらしていけば、結果がとれるはず。
+
 `spang2` can obtain results from *Virtuoso* by **automatic pagenation**.
 
 ## Examples
