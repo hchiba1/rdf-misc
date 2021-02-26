@@ -2,30 +2,67 @@
 
 ## VALUESの要素数
 
-VALUESの要素数が4095以上になるとエラーになる.
+VALUESの要素数が4095以上で、下記のエラー
 ```
 Error: 400
 Virtuoso 37000 Error SP030: SPARQL compiler, line 0: Too many arguments of a standard built-in function in operator()
 ```
-`libsrc/Wi/sparql_core.c`で`if (argcount > sbd->sbd_maxargs)`という要素数のチェックをスルーするように変更すると、1万要素とかでも普通に渡せるようになる.
+Virtuosoソースコードの`libsrc/Wi/sparql_core.c`を見ると、`0xFFF`(=4095)とハードコーディングされている.
 
-ただし、数万以上になるとどんどん遅くなる。5万は結果が返ってくるが、10万は返ってこない。5万から10万のどこかで、以下のエラーに遭遇するようになる。
+### 変更1
+`libsrc/Wi/sparql_core.c`で以下の部分をコメントアウト
+```
+      if (argcount > sbd->sbd_maxargs)
+        sparyyerror_impl (sparp, NULL, t_box_sprintf (100, "Too many arguments of a standard built-in function %s()", sbd->sbd_name));
+```
 
+1万要素とかでも普通に渡せるようになる.
+
+### 変更2
+要素数をさらに増やしていくと、以下のエラーに遭遇する.
 ```
 Error: 400 Bad Request
 Virtuoso 37000 Error SP031: SPARQL: Internal error: The length of generated SQL text has exceeded 10000 lines of code
 ```
-`libsrc/Wi/sparql2sql.h`の`if (SSG_MAX_ALLOWED_LINE_COUNT == ssg->ssg_line_count++)`というチェックをスルーするように変更すると、さらに以下のエラーにひっかかる.
+`libsrc/Wi/sparql2sql.h`で以下の部分を削除
+```
+    if (SSG_MAX_ALLOWED_LINE_COUNT == ssg->ssg_line_count++) \
+      spar_sqlprint_error_impl (ssg, "The length of generated SQL text has exceeded 10000 lines of code"); \
+```
+すると、さらに以下のエラーが出る.
 ```
 Error: 500 Internal Server Error
 Virtuoso ..... Error SQ200: Query too large, variables in state over the limit
 ```
-`libsrc/Wi/wi.h`内で、`#define MAX_STATE_SLOTS 0xfffe`でなく`#define MAX_STATE_SLOTS 0xffffe`になるようにすれば、state lotsの限界が16倍になるが、それでもまだ以下のエラーが出る.
+
+### 変更3
+`libsrc/Wi/wi.h`で以下の部分を修正
+```
+#ifdef LARGE_QI_INST
+#define MAX_STATE_SLOTS 0xffffe
+#else
+#define MAX_STATE_SLOTS 0xfffe
+#endif
+```
+`MAX_STATE_SLOTS`を`0xffffe`にする(16倍にする).
+
+すると以下のエラーが出る.
 ```
 Error: 500 Internal Server Error
 Virtuoso 42000 Error SQ199: Maximum size (32767) of a code vector exceeded by 3967441 bytes. Please split the code in smaller units.
 ```
-`libsrc/Wi/sqlexp.c`の`if (BOFS_TO_OFS (byte_len) > SHRT_MAX)`というチェックをスルーするように変更すると、10万要素でも答えが返ってくるようになる. ただし遅い.
+
+### 変更4
+`libsrc/Wi/sqlexp.c`の以下の部分をコメントアウト
+```
+      if (BOFS_TO_OFS (byte_len) > SHRT_MAX)
+	{
+	  sqlc_new_error (sc->sc_cc, "42000", "SQ199",
+	      "Maximum size (%ld) of a code vector exceeded by %ld bytes. "
+	      "Please split the code in smaller units.", (long) SHRT_MAX, (long) (byte_len - SHRT_MAX));
+	}
+```
+以上4カ所の修正で、結果的には、数万から10万要素でも答えが返ってくるようになる. ただし数万以上ともなると急激に遅くなり、何分もかかる.
 
 # RDF misc
 `spang2` can obtain results from *Virtuoso* by **automatic pagenation**.
